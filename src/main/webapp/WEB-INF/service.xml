@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE service-builder PUBLIC "-//Liferay//DTD Service Builder 6.2.0//EN" "http://www.liferay.com/dtd/liferay-service-builder_6_2_0.dtd">
+<service-builder package-path="com.liferay.samples.services">
+	<author>Liferay</author>
+	<namespace>SAMPLES</namespace>
+	<entity name="HelloSample" local-service="true" remote-service="true" >
+		<column name="sampleId" type="long" primary="true" />
+		<column name="sampleName" type="String" />
+		<column name="sampleAddress" type="String" />
+	</entity>
+</service-builder>
