@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<application xmlns="http://wadl.dev.java.net/2009/02">
+  <doc xml:lang="en" title="RESTFul"/>
+  <resources base="http://localhost:8080">
+    <resource path="sample-springmvc-restfull-portlet/services/helloSample" id="HelloSample">
+      <doc xml:lang="en" title="HelloSample"/>
+      <param name="sampleId" default="12502" type="xs:string" required="false" style="template" xmlns:xs="http://www.w3.org/2001/XMLSchema"/>
+      <resource path="sampleId/{sampleId}" id="{sampleId}">
+        <doc xml:lang="en" title="{sampleId}"/>
+        <param name="sampleId" default="{sampleId}" type="xs:string" required="false" style="template" xmlns:xs="http://www.w3.org/2001/XMLSchema"/>
+        <method name="GET" id="GET_SAMPLE_BY_ID">
+          <doc xml:lang="en" title="GET_SAMPLE_BY_ID"/>
+          <request/>
+          <response status="200">
+            <representation mediaType="application/json;charset=UTF-8" element="ns:Response" xmlns:ns="http://localhost/sample-springmvc-restfull-portlet/services/helloSample/sampleId/12502"/>
+          </response>
+        </method>
+        <method name="PUT" id="UPDATE_SAMPLE_BY_ID">
+          <doc xml:lang="en" title="UPDATE_SAMPLE_BY_ID"/>
+          <request>
+            <representation mediaType="application/json"/>
+          </request>
+          <response status="204">
+            <representation mediaType="" element="data"/>
+          </response>
+          <response status="">
+            <representation mediaType="application/json"/>
+          </response>
+        </method>
+        <method name="DELETE" id="DELETE_SAMPLE_BY_ID">
+          <doc xml:lang="en" title="DELETE_SAMPLE_BY_ID"/>
+          <request/>
+          <response status="405">
+            <representation mediaType="text/html;charset=utf-8" element="html"/>
+          </response>
+          <response status="204">
+            <representation mediaType="" element="data"/>
+          </response>
+        </method>
+      </resource>
+      <method name="GET" id="GET_ALL_SAMPLES">
+        <doc xml:lang="en" title="GET_ALL_SAMPLES"/>
+        <request/>
+        <response status="200">
+          <representation mediaType="application/json;charset=UTF-8"/>
+        </response>
+      </method>
+      <method name="POST" id="CREATE_SAMPLE">
+        <doc xml:lang="en" title="CREATE_SAMPLE"/>
+        <request>
+          <representation mediaType="application/json"/>
+        </request>
+        <response status="405 415">
+          <representation mediaType="text/html;charset=utf-8"/>
+        </response>
+        <response status="">
+          <representation mediaType="application/json"/>
+        </response>
+        <response status="201">
+          <representation mediaType="application/json"/>
+        </response>
+      </method>
+    </resource>
+  </resources>
+</application>

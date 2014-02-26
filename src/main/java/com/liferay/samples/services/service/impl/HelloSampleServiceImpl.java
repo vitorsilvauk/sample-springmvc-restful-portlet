@@ -44,6 +44,10 @@ public class HelloSampleServiceImpl extends HelloSampleServiceBaseImpl {
 		return helloSampleLocalService.updateHelloSample(helloSample);
 	}
 	
+	public HelloSample updateExistentHelloSample(HelloSample helloSample) throws SystemException, PortalException{
+		return helloSampleLocalService.updateExistentHelloSample(helloSample);
+	}
+	
 	public HelloSample deleteHelloSample(Long id) throws PortalException, SystemException{
 		return helloSampleLocalService.deleteHelloSample(id);
 	}

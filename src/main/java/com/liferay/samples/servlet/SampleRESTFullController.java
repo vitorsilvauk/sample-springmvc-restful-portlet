@@ -60,10 +60,10 @@ public @ResponseBody HelloSample createSample(@RequestBody HelloSampleImpl hello
 
 @RequestMapping(value = "/helloSample/sampleId/{sampleId}",method = RequestMethod.PUT)
 @ResponseStatus(HttpStatus.NO_CONTENT)
-void update(@PathVariable("sampleId") long sampleId,@RequestBody HelloSampleImpl helloSample) throws SystemException {
+void update(@PathVariable("sampleId") long sampleId,@RequestBody HelloSampleImpl helloSample) throws SystemException, PortalException {
 	try {
 		helloSample.setSampleId(sampleId);
-		HelloSampleServiceUtil.updateHelloSample(helloSample);
+		HelloSampleServiceUtil.updateExistentHelloSample(helloSample);
 	} catch (SystemException e) {
 		throw e;
 	}

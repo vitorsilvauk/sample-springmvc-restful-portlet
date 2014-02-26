@@ -1,0 +1,9 @@
+<?xml version="1.0"?>
+
+<model-hints>
+	<model name="com.liferay.samples.services.model.HelloSample">
+		<field name="sampleId" type="long" />
+		<field name="sampleName" type="String" />
+		<field name="sampleAddress" type="String" />
+	</model>
+</model-hints>

@@ -107,6 +107,21 @@ public class HelloSampleServiceSoap {
         }
     }
 
+    public static com.liferay.samples.services.model.HelloSampleSoap updateExistentHelloSample(
+        com.liferay.samples.services.model.HelloSampleSoap helloSample)
+        throws RemoteException {
+        try {
+            com.liferay.samples.services.model.HelloSample returnValue = HelloSampleServiceUtil.updateExistentHelloSample(com.liferay.samples.services.model.impl.HelloSampleModelImpl.toModel(
+                        helloSample));
+
+            return com.liferay.samples.services.model.HelloSampleSoap.toSoapModel(returnValue);
+        } catch (Exception e) {
+            _log.error(e, e);
+
+            throw new RemoteException(e.getMessage());
+        }
+    }
+
     public static com.liferay.samples.services.model.HelloSampleSoap deleteHelloSample(
         java.lang.Long id) throws RemoteException {
         try {

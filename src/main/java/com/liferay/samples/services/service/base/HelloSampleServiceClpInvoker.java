@@ -23,6 +23,8 @@ public class HelloSampleServiceClpInvoker {
     private String[] _methodParameterTypes27;
     private String _methodName28;
     private String[] _methodParameterTypes28;
+    private String _methodName29;
+    private String[] _methodParameterTypes29;
 
     public HelloSampleServiceClpInvoker() {
         _methodName18 = "getBeanIdentifier";
@@ -53,9 +55,15 @@ public class HelloSampleServiceClpInvoker {
                 "com.liferay.samples.services.model.HelloSample"
             };
 
-        _methodName28 = "deleteHelloSample";
+        _methodName28 = "updateExistentHelloSample";
 
-        _methodParameterTypes28 = new String[] { "java.lang.Long" };
+        _methodParameterTypes28 = new String[] {
+                "com.liferay.samples.services.model.HelloSample"
+            };
+
+        _methodName29 = "deleteHelloSample";
+
+        _methodParameterTypes29 = new String[] { "java.lang.Long" };
     }
 
     public Object invokeMethod(String name, String[] parameterTypes,
@@ -94,6 +102,11 @@ public class HelloSampleServiceClpInvoker {
 
         if (_methodName28.equals(name) &&
                 Arrays.deepEquals(_methodParameterTypes28, parameterTypes)) {
+            return HelloSampleServiceUtil.updateExistentHelloSample((com.liferay.samples.services.model.HelloSample) arguments[0]);
+        }
+
+        if (_methodName29.equals(name) &&
+                Arrays.deepEquals(_methodParameterTypes29, parameterTypes)) {
             return HelloSampleServiceUtil.deleteHelloSample((java.lang.Long) arguments[0]);
         }
 

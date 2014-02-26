@@ -22,6 +22,8 @@ public class HelloSampleServiceClp implements HelloSampleService {
     private String[] _methodParameterTypes6;
     private String _methodName7;
     private String[] _methodParameterTypes7;
+    private String _methodName8;
+    private String[] _methodParameterTypes8;
 
     public HelloSampleServiceClp(InvokableService invokableService) {
         _invokableService = invokableService;
@@ -54,9 +56,15 @@ public class HelloSampleServiceClp implements HelloSampleService {
                 "com.liferay.samples.services.model.HelloSample"
             };
 
-        _methodName7 = "deleteHelloSample";
+        _methodName7 = "updateExistentHelloSample";
 
-        _methodParameterTypes7 = new String[] { "java.lang.Long" };
+        _methodParameterTypes7 = new String[] {
+                "com.liferay.samples.services.model.HelloSample"
+            };
+
+        _methodName8 = "deleteHelloSample";
+
+        _methodParameterTypes8 = new String[] { "java.lang.Long" };
     }
 
     @Override
@@ -221,8 +229,8 @@ public class HelloSampleServiceClp implements HelloSampleService {
     }
 
     @Override
-    public com.liferay.samples.services.model.HelloSample deleteHelloSample(
-        java.lang.Long id)
+    public com.liferay.samples.services.model.HelloSample updateExistentHelloSample(
+        com.liferay.samples.services.model.HelloSample helloSample)
         throws com.liferay.portal.kernel.exception.PortalException,
             com.liferay.portal.kernel.exception.SystemException {
         Object returnObj = null;
@@ -230,6 +238,39 @@ public class HelloSampleServiceClp implements HelloSampleService {
         try {
             returnObj = _invokableService.invokeMethod(_methodName7,
                     _methodParameterTypes7,
+                    new Object[] { ClpSerializer.translateInput(helloSample) });
+        } catch (Throwable t) {
+            t = ClpSerializer.translateThrowable(t);
+
+            if (t instanceof com.liferay.portal.kernel.exception.PortalException) {
+                throw (com.liferay.portal.kernel.exception.PortalException) t;
+            }
+
+            if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
+                throw (com.liferay.portal.kernel.exception.SystemException) t;
+            }
+
+            if (t instanceof RuntimeException) {
+                throw (RuntimeException) t;
+            } else {
+                throw new RuntimeException(t.getClass().getName() +
+                    " is not a valid exception");
+            }
+        }
+
+        return (com.liferay.samples.services.model.HelloSample) ClpSerializer.translateOutput(returnObj);
+    }
+
+    @Override
+    public com.liferay.samples.services.model.HelloSample deleteHelloSample(
+        java.lang.Long id)
+        throws com.liferay.portal.kernel.exception.PortalException,
+            com.liferay.portal.kernel.exception.SystemException {
+        Object returnObj = null;
+
+        try {
+            returnObj = _invokableService.invokeMethod(_methodName8,
+                    _methodParameterTypes8,
                     new Object[] { ClpSerializer.translateInput(id) });
         } catch (Throwable t) {
             t = ClpSerializer.translateThrowable(t);

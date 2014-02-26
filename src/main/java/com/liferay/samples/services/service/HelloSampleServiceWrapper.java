@@ -73,6 +73,14 @@ public class HelloSampleServiceWrapper implements HelloSampleService,
     }
 
     @Override
+    public com.liferay.samples.services.model.HelloSample updateExistentHelloSample(
+        com.liferay.samples.services.model.HelloSample helloSample)
+        throws com.liferay.portal.kernel.exception.PortalException,
+            com.liferay.portal.kernel.exception.SystemException {
+        return _helloSampleService.updateExistentHelloSample(helloSample);
+    }
+
+    @Override
     public com.liferay.samples.services.model.HelloSample deleteHelloSample(
         java.lang.Long id)
         throws com.liferay.portal.kernel.exception.PortalException,

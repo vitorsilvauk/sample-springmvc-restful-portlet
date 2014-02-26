@@ -70,6 +70,11 @@ public interface HelloSampleService extends BaseService, InvokableService {
         com.liferay.samples.services.model.HelloSample helloSample)
         throws com.liferay.portal.kernel.exception.SystemException;
 
+    public com.liferay.samples.services.model.HelloSample updateExistentHelloSample(
+        com.liferay.samples.services.model.HelloSample helloSample)
+        throws com.liferay.portal.kernel.exception.PortalException,
+            com.liferay.portal.kernel.exception.SystemException;
+
     public com.liferay.samples.services.model.HelloSample deleteHelloSample(
         java.lang.Long id)
         throws com.liferay.portal.kernel.exception.PortalException,

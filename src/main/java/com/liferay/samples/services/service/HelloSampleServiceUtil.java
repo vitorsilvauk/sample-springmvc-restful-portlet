@@ -75,6 +75,13 @@ public class HelloSampleServiceUtil {
         return getService().updateHelloSample(helloSample);
     }
 
+    public static com.liferay.samples.services.model.HelloSample updateExistentHelloSample(
+        com.liferay.samples.services.model.HelloSample helloSample)
+        throws com.liferay.portal.kernel.exception.PortalException,
+            com.liferay.portal.kernel.exception.SystemException {
+        return getService().updateExistentHelloSample(helloSample);
+    }
+
     public static com.liferay.samples.services.model.HelloSample deleteHelloSample(
         java.lang.Long id)
         throws com.liferay.portal.kernel.exception.PortalException,
