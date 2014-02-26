@@ -263,6 +263,13 @@ public class HelloSampleLocalServiceUtil {
         return getService().invokeMethod(name, parameterTypes, arguments);
     }
 
+    public static com.liferay.samples.services.model.HelloSample updateExistentHelloSample(
+        com.liferay.samples.services.model.HelloSample helloSample)
+        throws com.liferay.portal.kernel.exception.PortalException,
+            com.liferay.portal.kernel.exception.SystemException {
+        return getService().updateExistentHelloSample(helloSample);
+    }
+
     public static void clearService() {
         _service = null;
     }

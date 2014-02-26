@@ -1,6 +1,8 @@
 package com.liferay.samples.services.service.impl;
 
+import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
+import com.liferay.samples.services.NoSuchHelloSampleException;
 import com.liferay.samples.services.model.HelloSample;
 import com.liferay.samples.services.service.base.HelloSampleLocalServiceBaseImpl;
 
@@ -33,6 +35,15 @@ public class HelloSampleLocalServiceImpl extends HelloSampleLocalServiceBaseImpl
 		helloSample.setSampleId(helloSampleId);
 		
 		return super.addHelloSample(helloSample);
+	}
+
+	public HelloSample updateExistentHelloSample(HelloSample helloSample)
+			throws SystemException, PortalException {
+		if(helloSamplePersistence.fetchByPrimaryKey(helloSample.getSampleId())==null){
+			throw new NoSuchHelloSampleException();
+		}else{
+			return super.updateHelloSample(helloSample);
+		}
 	}
 	
     

@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class SampleSpringMVCRESTFulPortlet {
 
 @RequestMapping
-public String initRESTFullApp(){
+public String initRESTFulApp(){
 	return "defaultView";
 }
 	

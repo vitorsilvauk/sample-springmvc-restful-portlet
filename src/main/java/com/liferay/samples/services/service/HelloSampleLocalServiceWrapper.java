@@ -275,6 +275,14 @@ public class HelloSampleLocalServiceWrapper implements HelloSampleLocalService,
             arguments);
     }
 
+    @Override
+    public com.liferay.samples.services.model.HelloSample updateExistentHelloSample(
+        com.liferay.samples.services.model.HelloSample helloSample)
+        throws com.liferay.portal.kernel.exception.PortalException,
+            com.liferay.portal.kernel.exception.SystemException {
+        return _helloSampleLocalService.updateExistentHelloSample(helloSample);
+    }
+
     /**
      * @deprecated As of 6.1.0, replaced by {@link #getWrappedService}
      */

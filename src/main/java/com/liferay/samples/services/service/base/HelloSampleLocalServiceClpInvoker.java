@@ -47,6 +47,8 @@ public class HelloSampleLocalServiceClpInvoker {
     private String[] _methodParameterTypes35;
     private String _methodName40;
     private String[] _methodParameterTypes40;
+    private String _methodName41;
+    private String[] _methodParameterTypes41;
 
     public HelloSampleLocalServiceClpInvoker() {
         _methodName0 = "addHelloSample";
@@ -142,6 +144,12 @@ public class HelloSampleLocalServiceClpInvoker {
         _methodName40 = "addHelloSample";
 
         _methodParameterTypes40 = new String[] {
+                "com.liferay.samples.services.model.HelloSample"
+            };
+
+        _methodName41 = "updateExistentHelloSample";
+
+        _methodParameterTypes41 = new String[] {
                 "com.liferay.samples.services.model.HelloSample"
             };
     }
@@ -250,6 +258,11 @@ public class HelloSampleLocalServiceClpInvoker {
         if (_methodName40.equals(name) &&
                 Arrays.deepEquals(_methodParameterTypes40, parameterTypes)) {
             return HelloSampleLocalServiceUtil.addHelloSample((com.liferay.samples.services.model.HelloSample) arguments[0]);
+        }
+
+        if (_methodName41.equals(name) &&
+                Arrays.deepEquals(_methodParameterTypes41, parameterTypes)) {
+            return HelloSampleLocalServiceUtil.updateExistentHelloSample((com.liferay.samples.services.model.HelloSample) arguments[0]);
         }
 
         throw new UnsupportedOperationException();
