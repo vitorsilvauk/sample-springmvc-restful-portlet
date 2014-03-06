@@ -6,6 +6,8 @@
 		<portlet-name>sample-springmvc-restfull-portlet</portlet-name>
 		<icon>/icon.png</icon>
 		<header-portlet-css>/css/main.css</header-portlet-css>
+		<header-portlet-css>/js/ext-4.2/resources/css/ext-all.css</header-portlet-css>
+		<header-portlet-javascript>/js/ext-4.2/ext-all-debug-w-comments.js</header-portlet-javascript>
 		<footer-portlet-javascript>/js/main.js</footer-portlet-javascript>
 	</portlet>
 	<role-mapper>

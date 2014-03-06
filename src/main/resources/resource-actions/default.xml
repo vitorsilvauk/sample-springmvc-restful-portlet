@@ -1,0 +1,66 @@
+<?xml version="1.0"?>
+<!DOCTYPE resource-action-mapping PUBLIC "-//Liferay//DTD Resource Action Mapping 6.1.0//EN" "http://www.liferay.com/dtd/liferay-resource-action-mapping_6_1_0.dtd">
+<resource-action-mapping>
+
+	<portlet-resource>
+		<portlet-name>sample-springmvc-restfull-portlet</portlet-name>
+		<permissions>
+			<supports>
+				<action-key>ADD_TO_PAGE</action-key>
+				<action-key>CONFIGURATION</action-key>
+				<action-key>VIEW</action-key>
+			</supports>
+			<site-member-defaults>
+				<action-key>VIEW</action-key>
+			</site-member-defaults>
+			<guest-defaults>
+				<action-key>VIEW</action-key>
+			</guest-defaults>
+			<guest-unsupported />
+		</permissions>
+	</portlet-resource>
+	
+	<model-resource>
+		<model-name>com.liferay.sample.services.model</model-name>
+		<portlet-ref>
+			<portlet-name>sample-springmvc-restfull-portlet</portlet-name>
+			
+		</portlet-ref>
+		
+		<permissions>
+			<supports>
+				<action-key>ADD_HELLOSAMPLE</action-key>
+				<action-key>DELETE_HELLOSAMPLE</action-key>
+				<action-key>UPDATE_HELLOSAMPLE</action-key>
+			</supports>
+			<site-member-defaults />
+			<guest-defaults />
+			<guest-unsupported>
+				<action-key>ADD_HELLOSAMPLE</action-key>
+				<action-key>DELETE_HELLOSAMPLE</action-key>
+				<action-key>UPDATE_HELLOSAMPLE</action-key>
+			</guest-unsupported>
+		</permissions>
+	</model-resource>
+		<model-resource>
+		<model-name>com.liferay.sample.services.HelloSample</model-name>
+		<portlet-ref>
+			<portlet-name>sample-springmvc-restfull-portlet</portlet-name>
+		</portlet-ref>
+		<permissions>
+			<supports>
+				<action-key>PERMISSIONS</action-key>
+				<action-key>VIEW</action-key>
+			</supports>
+			<site-member-defaults>
+				<action-key>VIEW</action-key>
+			</site-member-defaults>
+			<guest-defaults>
+				<action-key>VIEW</action-key>
+			</guest-defaults>
+			<guest-unsupported>
+			</guest-unsupported>
+		</permissions>
+	</model-resource>
+</resource-action-mapping>
+	    

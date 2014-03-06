@@ -1,14 +1,18 @@
 package com.liferay.samples.servlet.interceptor;
 
+import com.liferay.portal.kernel.exception.PortalException;
+import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.servlet.HttpHeaders;
 import com.liferay.portal.kernel.servlet.ProtectedServletRequest;
+import com.liferay.portal.kernel.util.CookieKeys;
 import com.liferay.portal.kernel.util.Digester;
 import com.liferay.portal.kernel.util.DigesterUtil;
 import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.Http;
 import com.liferay.portal.kernel.util.HttpUtil;
+import com.liferay.portal.kernel.util.KeyValuePair;
 import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.Validator;
@@ -24,12 +28,19 @@ import com.liferay.portal.service.CompanyLocalServiceUtil;
 import com.liferay.portal.service.UserLocalServiceUtil;
 import com.liferay.portal.util.Portal;
 import com.liferay.portal.util.PortalUtil;
+import com.liferay.util.Encryptor;
+import com.liferay.util.EncryptorException;
+
+import java.io.UnsupportedEncodingException;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
+
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+
 import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
 
 public class SecureRequestHandlerInterceptor extends HandlerInterceptorAdapter{
@@ -82,9 +93,13 @@ public class SecureRequestHandlerInterceptor extends HandlerInterceptorAdapter{
 
 				_log.debug("Not securing " + completeURL);
 			}
-
+			
 			User user = PortalUtil.getUser(request);
 
+			if(user==null){
+				user = getUserFromCookies(request);
+			}
+			
 			if ((user != null) && !user.isDefaultUser()) {
 				request = setCredentials(
 					request, request.getSession(), user.getUserId(), null);
@@ -108,6 +123,51 @@ public class SecureRequestHandlerInterceptor extends HandlerInterceptorAdapter{
 	}
 	
 	
+	private User getUserFromCookies(HttpServletRequest request) {
+		// Getting the cookies from the servlet request
+				Cookie[] cookies = request.getCookies();
+				String userId = null;
+				String uuid = CookieKeys.getCookie(request, CookieKeys.USER_UUID);
+				String companyId = CookieKeys.getCookie(request, CookieKeys.COMPANY_ID);
+				
+				if (uuid != null && companyId != null) {
+					try {
+						Company company = CompanyLocalServiceUtil.getCompany(Long.parseLong(companyId));
+						String _userid = Encryptor.decrypt(company.getKeyObj(), uuid);
+						userId = _userid.substring(0,_userid.indexOf(StringPool.PERIOD));
+						
+						return UserLocalServiceUtil.getUser(Long.parseLong(userId));
+						
+					} catch (NumberFormatException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					} catch (PortalException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					} catch (SystemException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					} catch (EncryptorException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+				}
+				return null;
+				
+	}
+
+	public String hexStringToStringByAscii(String hexString) {
+		byte[] bytes = new byte[hexString.length()/2];
+		for (int i = 0; i < hexString.length() / 2; i++) {
+			String oneHexa = hexString.substring(i * 2, i * 2 + 2);
+			bytes[i] = Byte.parseByte(oneHexa, 16);
+		}
+		try {
+			return new String(bytes, "ASCII");
+		} catch (UnsupportedEncodingException e) {
+			throw new RuntimeException(e);
+		}
+	}
 	protected HttpServletRequest basicAuth(
 			HttpServletRequest request, HttpServletResponse response)
 		throws Exception {
